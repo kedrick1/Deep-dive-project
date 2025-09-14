@@ -1,5 +1,10 @@
 name: Events Demo 1
-on: ...
+on:
+  pull_request:
+    types: #opened
+      - opened #types is keyword, activity type that should trigger this workflow, opened
+  workflow_dispatch:  #need the : if we want another event trigger , same indentation
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
