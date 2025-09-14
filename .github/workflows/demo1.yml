@@ -3,7 +3,18 @@ on:
   pull_request:
     types: #opened
       - opened #types is keyword, activity type that should trigger this workflow, opened
+    branches:
+      - main
+      - 'dev-*'
+
   workflow_dispatch:  #need the : if we want another event trigger , same indentation
+  push: #only start a workflow if target/not a specific branch, or has tag to it
+    branches:
+      - main #list of branches covered, only main branch push will trigger this workflow
+      - 'dev-*' #all branches that start with dev-   ** for including the / in it
+    paths-ignore:
+    - '.github/workflows/*' #can also filter based on path
+    #The push event will occur if we modify a file under the main and dev-* branch, but that isnt in this path
 
 jobs:
   deploy:
